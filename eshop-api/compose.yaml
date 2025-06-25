@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'mysql'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=scherer_eshop'
+      - 'MYSQL_USER=eshop'
+      - 'MYSQL_PASSWORD=eshop123'
+      - 'MYSQL_ROOT_PASSWORD=adminadmin'
+    ports:
+      - '3306:3306'
