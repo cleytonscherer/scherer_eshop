@@ -1,8 +1,10 @@
 package br.com.scherer.eshop.model;
 
+import br.com.scherer.eshop.dto.ClienteAtualizacao;
 import br.com.scherer.eshop.dto.ClienteCadastro;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.Valid;
 
 import java.util.UUID;
 
@@ -16,6 +18,7 @@ public class Cliente {
     private String  telefone;
     private String  senha;
     private String  cpf;
+    private Boolean ativo;
 
     public Cliente() {
     }
@@ -27,6 +30,7 @@ public class Cliente {
         this.telefone = cadastro.telefone();
         this.senha = cadastro.senha();
         this.cpf = cadastro.cpf();
+        this.ativo = true;
     }
 
     public String getId() {
@@ -77,6 +81,14 @@ public class Cliente {
         this.cpf = cpf;
     }
 
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public String toString() {
         return "\n------------------------------------------------------------------------------------------\n" +
@@ -88,6 +100,29 @@ public class Cliente {
                 ",\n\ttelefone='" + telefone + '\'' +
                 ",\n\tsenha='" + senha + '\'' +
                 ",\n\tcpf='" + cpf + '\'' +
+                ",\n\tativo='" + ativo + '\'' +
                 "\n}";
+    }
+
+    public void atualizar(@Valid ClienteAtualizacao dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.senha() != null) {
+            this.senha = dados.senha();
+        }
+        if (dados.cpf() != null) {
+            this.cpf = dados.cpf();
+        }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }

@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### a pasta env não deveria ir para o github por conter senhas
+# env
+
+mysql-data

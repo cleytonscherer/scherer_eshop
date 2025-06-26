@@ -9,3 +9,6 @@ docker network create --driver bridge rede_local
 
 # Disponibiliza a api na porta 8080 local
 docker run -p 8080:8080 cleytonscherer/eshop-api
+
+# Docker Compose build
+docker compose up --build

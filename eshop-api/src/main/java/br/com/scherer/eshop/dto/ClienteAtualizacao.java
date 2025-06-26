@@ -4,7 +4,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record ClienteCadastro(
+public record ClienteAtualizacao(
+        @NotBlank
+        String  id,
         @NotBlank(message = "Nome do cliente deve ser informado")
         String  nome,
         @NotBlank(message = "endereço de e-mail deve ser informado")
