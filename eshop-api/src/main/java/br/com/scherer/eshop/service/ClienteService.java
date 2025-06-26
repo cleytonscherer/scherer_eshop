@@ -5,6 +5,7 @@ import br.com.scherer.eshop.dto.ClienteDetalhe;
 import br.com.scherer.eshop.model.Cliente;
 import br.com.scherer.eshop.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-
+    @CacheEvict(value = "clientes", allEntries = true) // limpa o cache
     public Cliente cadastrar(ClienteCadastro cadastro) {
         Cliente cliente = new Cliente(cadastro);
         clienteRepository.save(cliente);
@@ -36,7 +37,7 @@ public class ClienteService {
         return cliente.get();
     }
 
-    @Cacheable(value = "clientes")
+    @Cacheable(value = "clientes") // popula o cache
     public List<ClienteDetalhe> listarTodos() {
         return clienteRepository.findAllByAtivoTrue().stream().map(ClienteDetalhe::new).toList();
     }
