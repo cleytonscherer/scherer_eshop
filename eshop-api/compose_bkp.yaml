@@ -1,7 +1,7 @@
 services:
   mysql:
     container_name: 'mysql'
-    image: 'mysql:latest'
+    image: 'mysql:8.0.39'
     environment:
       - 'MYSQL_DATABASE=scherer_eshop'
       - 'MYSQL_USER=eshop'
@@ -14,3 +14,5 @@ services:
     container_name: 'redis'
     image: 'redis:7.2.4'
     restart: 'unless-stopped'
+    ports:
+      - '6379:6379'
